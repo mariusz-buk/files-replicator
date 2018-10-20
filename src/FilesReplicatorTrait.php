@@ -18,6 +18,8 @@ trait FilesReplicatorTrait
     public function replicate(array $except = null)
     {
         $newObject = parent::replicate($except);
+        // we must save the object as object ID is required to attach files
+        $newObject->save();
 
         if (is_array($this->attachOne)) {
             $this->replicateAttachOne($newObject);
