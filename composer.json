@@ -2,7 +2,7 @@
     "name": "mariusz-buk/files-replicator",
     "description": "OctoberCMS FilesReplicator trait used when replicating any model with files.",
     "type": "trait",
-    "license": "GNU General Public License v3.0",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Mariusz Buk",
