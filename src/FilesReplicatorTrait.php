@@ -13,7 +13,7 @@ use System\Models\File;
 
 trait FilesReplicatorTrait
 {
-    protected $filesReplicatorDebug = true;
+    private $filesReplicatorDebug = false;
 
     public function replicate(array $except = null)
     {
@@ -159,5 +159,21 @@ trait FilesReplicatorTrait
 
         $object->replicateAttachOne($this);
         $object->replicateAttachMany($this);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFilesReplicatorDebug()
+    {
+        return $this->filesReplicatorDebug;
+    }
+
+    /**
+     * @param bool $filesReplicatorDebug
+     */
+    public function setFilesReplicatorDebug($filesReplicatorDebug)
+    {
+        $this->filesReplicatorDebug = $filesReplicatorDebug;
     }
 }
