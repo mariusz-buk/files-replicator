@@ -9,7 +9,7 @@
             "email": "mariusz@buk.email"
         }
     ],
-    "version": "1.0.0",
+    "version": "1.0.4",
     "require": {
         "php": ">=7.0"
     },
