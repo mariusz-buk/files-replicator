@@ -61,29 +61,32 @@ trait FilesReplicatorTrait
             $newFile = new $fileClass();
 
             // we use DIRECTORY_SEPERATOR to make sure we are OS independant.
-            $newFile = $newFile->fromFile(base_path().
-                DIRECTORY_SEPARATOR.
-                'storage'.
-                DIRECTORY_SEPARATOR.
-                'app'.
-                DIRECTORY_SEPARATOR.
-                $this->$file->getDiskPath()
-            );
+            $path = base_path() .
+                DIRECTORY_SEPARATOR .
+                'storage' .
+                DIRECTORY_SEPARATOR .
+                'app' .
+                DIRECTORY_SEPARATOR .
+                $file->getDiskPath();
 
-            $newFile->is_public = true;
+            if (file_exists($path)) {
+                $newFile = $newFile->fromFile($path);
 
-            // Copy over the original uploaded file name
-            $newFile->file_name = $this->$file->file_name;
+                $newFile->is_public = true;
 
-            // Copy over the custom title if that was set
-            $newFile->title = $this->$file->title;
+                // Copy over the original uploaded file name
+                $newFile->file_name = $this->$file->file_name;
 
-            // Copy over the custom description if that was set
-            $newFile->description = $this->$file->description;
+                // Copy over the custom title if that was set
+                $newFile->title = $this->$file->title;
 
-            // attach file
-            $newObject->$file()->setSimpleValue($newFile);
-            $newObject->save();
+                // Copy over the custom description if that was set
+                $newFile->description = $this->$file->description;
+
+                // attach file
+                $newObject->$file()->setSimpleValue($newFile);
+                $newObject->save();
+            }
         }
     }
 
@@ -120,29 +123,32 @@ trait FilesReplicatorTrait
                 $newFile = new $fileClass();
 
                 // we use DIRECTORY_SEPERATOR to make sure we are OS independant.
-                $newFile = $newFile->fromFile(base_path() .
+                $path = base_path() .
                     DIRECTORY_SEPARATOR .
                     'storage' .
                     DIRECTORY_SEPARATOR .
                     'app' .
                     DIRECTORY_SEPARATOR .
-                    $file->getDiskPath()
-                );
+                    $file->getDiskPath();
 
-                $newFile->is_public = true;
+                if (file_exists($path)) {
+                    $newFile = $newFile->fromFile($path);
 
-                // Copy over the original uploaded file name
-                $newFile->file_name = $file->file_name;
+                    $newFile->is_public = true;
 
-                // Copy over the custom title if that was set
-                $newFile->title = $file->title;
+                    // Copy over the original uploaded file name
+                    $newFile->file_name = $file->file_name;
 
-                // Copy over the custom description if that was set
-                $newFile->description = $file->description;
+                    // Copy over the custom title if that was set
+                    $newFile->title = $file->title;
 
-                // attach file
-                $newObject->$files()->add($newFile);
-                $newObject->save();
+                    // Copy over the custom description if that was set
+                    $newFile->description = $file->description;
+
+                    // attach file
+                    $newObject->$files()->add($newFile);
+                    $newObject->save();
+                }
             }
         }
     }
