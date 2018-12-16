@@ -67,7 +67,7 @@ trait FilesReplicatorTrait
                 DIRECTORY_SEPARATOR .
                 'app' .
                 DIRECTORY_SEPARATOR .
-                $file->getDiskPath();
+                $this->$file->getDiskPath();
 
             if (file_exists($path)) {
                 $newFile = $newFile->fromFile($path);
